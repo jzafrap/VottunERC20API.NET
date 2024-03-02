@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <InvariantGlobalization>true</InvariantGlobalization>
+    <PublishAot>true</PublishAot>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <Title>A Vottun ERC20 SDK for .NET</Title>
+    <Company>JzpSoft</Company>
+    <Authors>JZPSoft</Authors>
+    <Description>A simple Vottun ERC 20 API SDK for .NET, provides utility classes for querying Vottun ERC 20 API.</Description>
+    <Copyright>jzpsoft 2024</Copyright>
+    <PackageProjectUrl>https://github.com/jzafrap/VottunERC20API.NET</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/jzafrap/VottunERC20API.NET</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>vottun; api; erc20</PackageTags>
+    <IsPackable>true</IsPackable>
+  </PropertyGroup>
+
+</Project>
