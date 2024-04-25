@@ -18,9 +18,20 @@ Implemented API methods:
 Ready as a nugget package published in nuget.org, just search for VottunERC20API.NET.1.0.0.
 
 Using VottunERC20API.NET SDK is very easy:
-1.  Declare your API and AUTH keys
-2.  Create a client using the provided factory in [VottunApiClientFactory](https://github.com/jzafrap/VottunERC20API.NET/blob/main/VottumERC20API.NET/VottunApiClientFactory.cs), passing your API keys.
-3.  Build your request objetc, call the available API methods and get the response, that's all!
+1. In your project or solution, add reference to package VottunERC20API.NET available in nuget.org package repository:
+   
+![image](https://github.com/jzafrap/VottunERC20API.NET/assets/36307819/e9488a2a-9377-46ac-931d-d20c7e3750d9)
+
+3.  Declare your API and AUTH keys:
+   
+![image](https://github.com/jzafrap/VottunERC20API.NET/assets/36307819/e51e5835-f6c0-4cfc-9e03-676817937f68)
+
+4.  Create a client using the provided factory in [VottunApiClientFactory](https://github.com/jzafrap/VottunERC20API.NET/blob/main/VottumERC20API.NET/VottunApiClientFactory.cs), passing your API keys.
+
+![image](https://github.com/jzafrap/VottunERC20API.NET/assets/36307819/8496b4b4-b50b-43bd-81b2-f4601f758c5f)
+
+
+5.  Build your request objetc, call the available API methods and get the response, that's all!
 
 Example of use:
    
