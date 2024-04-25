@@ -184,5 +184,9 @@ Console.WriteLine($"DecreaseAllowance TxnHash: {decreaseAllowanceResponse.txHash
 # version changelog
 - 1.0.0:
   - first version
-- 1.0.1:
+- 1.0.5:
   - changed ```initialSupply``` attribute from ```string``` to ```int``` type and other minor changes
+ 
+# TO DO list
+- Extend to other vottun APIS
+- Include more examples
