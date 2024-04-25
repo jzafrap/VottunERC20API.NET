@@ -15,7 +15,7 @@ Implemented API methods:
  - GET https://api.vottun.tech/erc/v1/erc20/decimals
  - GET https://api.vottun.tech/erc/v1/erc20/balanceOf
 
-Ready as a nugget package in bin/Release/VottunERC20API.NET.1.0.0.nupkg
+Ready as a nugget package published in nuget.org, just search for VottunERC20API.NET.1.0.0.
 
 Using VottunERC20API.NET SDK is very easy:
 1.  Declare your API and AUTH keys
@@ -170,3 +170,8 @@ var decreaseAllowanceRequest = new DecreaseAllowanceRequest
 var decreaseAllowanceResponse = await client.DecreaseAllowanceAsync(decreaseAllowanceRequest, CancellationToken.None);
 Console.WriteLine($"DecreaseAllowance TxnHash: {decreaseAllowanceResponse.txHash}");
 ```
+# version changelog
+- 1.0.0:
+  - first version
+- 1.0.1:
+  - changed ```initialSupply``` attribute from ```string``` to ```int``` type and other minor changes
