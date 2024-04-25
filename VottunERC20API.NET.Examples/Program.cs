@@ -1,42 +1,4 @@
-# VottunERC20API.NET
-This SDK for .NET 8 implements Vottun ERC20 API, and allows querying all API methods within a .NET 8 application.
-It provides wrapped classes for of all json requests and responses, as provided in Vottun ERC20 API(https://docs.vottun.io/api/erc20)
-
-Implemented API methods:
- - POST https://api.vottun.tech/erc/v1/erc20/deploy
- - POST https://api.vottun.tech/erc/v1/erc20/transfer
- - POST https://api.vottun.tech/erc/v1/erc20/transferFrom
- - POST https://api.vottun.tech/erc/v1/erc20/increaseAllowance
- - POST https://api.vottun.tech/erc/v1/erc20/decreaseAllowance
- - GET https://api.vottun.tech/erc/v1/erc20/allowance
- - GET https://api.vottun.tech/erc/v1/erc20/name
- - GET https://api.vottun.tech/erc/v1/erc20/symbol
- - GET https://api.vottun.tech/erc/v1/erc20/totalSupply
- - GET https://api.vottun.tech/erc/v1/erc20/decimals
- - GET https://api.vottun.tech/erc/v1/erc20/balanceOf
-
-Ready as a nugget package published in nuget.org, just search for VottunERC20API.NET.1.0.5.
-
-Using VottunERC20API.NET SDK is very easy:
-1. In your project or solution, add reference to package VottunERC20API.NET available in nuget.org package repository:
-   
-![image](https://github.com/jzafrap/VottunERC20API.NET/assets/36307819/e9488a2a-9377-46ac-931d-d20c7e3750d9)
-
-3.  Declare your API and AUTH keys:
-   
-![image](https://github.com/jzafrap/VottunERC20API.NET/assets/36307819/e51e5835-f6c0-4cfc-9e03-676817937f68)
-
-4.  Create a client using the provided factory in [VottunApiClientFactory](https://github.com/jzafrap/VottunERC20API.NET/blob/main/VottumERC20API.NET/VottunApiClientFactory.cs), passing your API keys.
-
-![image](https://github.com/jzafrap/VottunERC20API.NET/assets/36307819/8496b4b4-b50b-43bd-81b2-f4601f758c5f)
-
-
-5.  Build your request objetc, call the available API methods and get the response, that's all!
-
-Example of use:
-   
-```csharp
-using VottumERC20API.NET;
+﻿using VottumERC20API.NET;
 
 //set your api and authorization key
 var apiKey = "<your api key>";
@@ -180,9 +142,5 @@ var decreaseAllowanceRequest = new DecreaseAllowanceRequest
 
 var decreaseAllowanceResponse = await client.DecreaseAllowanceAsync(decreaseAllowanceRequest, CancellationToken.None);
 Console.WriteLine($"DecreaseAllowance TxnHash: {decreaseAllowanceResponse.txHash}");
-```
-# version changelog
-- 1.0.0:
-  - first version
-- 1.0.1:
-  - changed ```initialSupply``` attribute from ```string``` to ```int``` type and other minor changes
+
+
