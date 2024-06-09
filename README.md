@@ -188,6 +188,8 @@ Console.WriteLine($"DecreaseAllowance TxnHash: {decreaseAllowanceResponse.txHash
   - changed ```initialSupply``` attribute from ```string``` to ```int``` type and other minor changes
 - 1.0.6:
   - changed uint256 solidity type (initialSuply, value, allowance...) to System.Numeric.Biginteger NET.8 type as ERC20 supply and value are expressed in gwei (256bit integers)
+- 1.1.0:
+  - Added tests for serialization/deserialization of BigInteger numbers when bigger than ulong (as solidity allows). 
  
 # TO DO list
 - Extend to other vottun APIS
