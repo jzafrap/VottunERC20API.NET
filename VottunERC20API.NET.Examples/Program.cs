@@ -1,146 +1,51 @@
-﻿using VottumERC20API.NET;
+﻿using Microsoft.Extensions.Options;
+using System.Net.Http.Json;
+using System.Text.Json;
+using VottunERC20API.NET;
+
 
 //set your api and authorization key
-var apiKey = "<your api key>";
-var authorizationKey = "<your auth key>";
+
+//set your api and authorization key
+var apiKey = "YTVBcIJsRwrJL2UqkuUMHAk6nhPNLVDGQCA8QHHpNtaJ_Sg9yR3qfgoiBv19ZoIf";
+var applicationID = "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIyYzhkM01GclFnd2NmdlFreXl5TXpMRGlhdTMiLCJ0eXBlIjoiZXJwIiwiaWQiOiIiLCJ1c2VybmFtZSI6Imp6YWZyYWRlbHBvem9AZ21haWwuY29tIiwiY2lkIjoiMTBkZDExZDctMmMxYi00MTgzLTg0YjgtZjA2ZjNjZjhlMjk0Iiwic2t1IjpbeyJyIjoxMSwicyI6OCwiZSI6MH0seyJyIjoxMSwicyI6ODAwMSwiZSI6MH0seyJyIjoxMSwicyI6ODAwMiwiZSI6MH0seyJyIjoxMSwicyI6ODAwMywiZSI6MH0seyJyIjoxMSwicyI6ODAwNSwiZSI6MH0seyJyIjoxMSwicyI6ODAxMCwiZSI6MH0seyJyIjoxMSwicyI6MywiZSI6MH1dLCJwdWMiOiIwMDAwMDAwMC0wMDAwLTAwMDAtMDAwMC0wMDAwMDAwMDAwMDAifQ.fKOoXcP4R3Tu3l-zD155jkRBDjysO1ohRjekAq7plpOEXEHmU0O-xCIfQujVaSka8-QA-vMhiT6LC6Lp7BEE3vA4XhPUsoy9ghmRA87nJbJWl6EiUOpAIrYaiPn6LXG3NKWPJq7FR51kVM5oAGi6DQLd3syuLtydixk0lZwYYIMImq1WoYTkkQFehLodVH3_P36mCLBdZvFYir49RR3p-Uc0-U_HIBUcezwapaAiJS-FCPz03beYKs3ij_YoGofnZ40B5kpgOFUihp7D7n58Eb1H-2RtXqVLhnwP1gUvYh7C2fBtGieirvad6NWhzXUSLBoKsHN2et7vLfHS6jNYFKMZJJ_L8r8Si2cLJIo2fXH_51bUBDQtfjI-BPuuUvhOL_bk5J3MTfTJ-MJ9RGDvCCYNAhZ0seLjgmZ4gTNXQ7w9BkRY7St-fgj7G2gWBFIptgcIt3Fjqtf_rybr4HAWQ6aKcnaHx6_d8hZi_DwiTRLdoBEQuIooqPf3Z8Q8dwwiyUSmB-K5efuck8iju_IeMp28c2UEeJgONudGHsGBER8ilpF1WWpQRdPTrf07xMAZT5WrQHo1UhdfIMhx9o0CLQcfn33yLEX5i_JAItEvdO2ba3gBxpAFJ08IvSZJbPeANslTXtesvu2v2k_eTFy0nmfv6INqATNBCaFPFhgme-U";
+
+
 
 //instance a client by calling the provided factory
-var client = VottunApiClientFactory.Create( apiKey, authorizationKey);
-
-
-//examples of SDK usage
-//1. Allowance
-var allowanceRequest = new AllowanceRequest
-{
-    contractAddress = "0xBe0CD9c4C636373eB1c5e1d581b1269E9E40c517",
-    network = 80001,
-    owner = "0x7590a8ff8a4b8e2831db16a02f03c7acd65aca26",
-    spender = "0x7590a8fF8A4B8E2831dB16A02f03c7AcD65aca26"
-};
-var allowance = await client.AllowanceAsync(  allowanceRequest , CancellationToken.None);
-
-Console.WriteLine($"Allowance: {allowance.allowance}");
-
-//2. Name
-var nameRequest = new NameRequest
-{
-   contractAddress= "0xBe0CD9c4C636373eB1c5e1d581b1269E9E40c517",
-   network=80001
-};
-var name = await client.NameAsync(nameRequest, CancellationToken.None);
-
-Console.WriteLine($"Name: {name.name}");
-
-//3. Symbol
-
-var SymbolRequest = new SymbolRequest
-{
-    contractAddress = "0xBe0CD9c4C636373eB1c5e1d581b1269E9E40c517",
-    network = 80001
-};
-
-var symbolResponse = await client.SymbolAsync(SymbolRequest, CancellationToken.None);
-Console.WriteLine($"Symbol: {symbolResponse.symbol}");
-
-
-//4. TotalSupply
-
-var totalSupplyRequest = new TotalSupplyRequest
-{
-    contractAddress = "0xBe0CD9c4C636373eB1c5e1d581b1269E9E40c517",
-    network = 80001
-};
-
-var totalSupplyResponse = await client.TotalSupplyAsync(totalSupplyRequest, CancellationToken.None);
-Console.WriteLine($"TotalSupply: {totalSupplyResponse.totalSupply}");
-
-//5. Decimals
-
-var decimalsRequest = new DecimalsRequest
-{
-    contractAddress = "0xBe0CD9c4C636373eB1c5e1d581b1269E9E40c517",
-    network = 80001
-};
-
-var decimalsResponse = await client.DecimalsAsync(decimalsRequest, CancellationToken.None);
-Console.WriteLine($"Decimals: {decimalsResponse.decimals}");
-
-//6. BalanceOf
-
-var balanceOfRequest = new BalanceOfRequest
-{
-    contractAddress = "0xBe0CD9c4C636373eB1c5e1d581b1269E9E40c517",
-    network = 80001,
-    address = "0x7590a8ff8a4b8e2831db16a02f03c7acd65aca26"
-};
-
-var balanceOfResponse = await client.BalanceOfAsync(balanceOfRequest, CancellationToken.None);
-Console.WriteLine($"BalanceOf: {balanceOfResponse.balance}");
+var client = VottunApiClientFactory.Create( apiKey, applicationID);
 
 //7. Deploy
 var deployRequest = new DeployRequest
 {
     name = "VottunToken",
     symbol = "VOT",
-    alias  = "Vottun token ERC20 test",
-    initialSupply = 21000000,
-    network = 80001
+    alias = "Vottun token ERC20 test",
+    initialSupply = 2100000000000,
+    network = 80002
 };
+
+/*
+var options = new JsonSerializerOptions();
+options.Converters.Add(new BigIntegerConverter());
+options.TypeInfoResolver = new AppJsonSerializerContext();
+JsonContent content = JsonContent.Create(deployRequest,typeof(DeployRequest),mediaType:null,  options);
+string json = content.ToString();
+
+string jsonString = JsonSerializer.Serialize(deployRequest, typeof(DeployRequest), options);
+Console.WriteLine($"{jsonString}");
+*/
 
 var deployResponse = await client.DeployAsync(deployRequest, CancellationToken.None);
 Console.WriteLine($"Deployed ContractAddress: {deployResponse.contractAddress}");
 
-
-//8. Transfer
-var transferRequest = new TransferRequest
+var totalSupplyResponse = await client.TotalSupplyAsync(new TotalSupplyRequest()
 {
-    contractAddress = "0x5FbE0944D3d2df2C7D2B55c0ED2C9085bcD8971A",
-    recipient = "0x7590a8ff8a4b8e2831db16a02f03c7acd65aca26",
-    amount = 100,
-    network = 80001
-};
+    contractAddress = deployResponse.contractAddress,
+    network = 80002
+}, CancellationToken.None);
 
-var transferResponse = await client.TransferAsync(transferRequest, CancellationToken.None);
-Console.WriteLine($"Transfer TxnHash: {transferResponse.txHash}");
+Console.WriteLine($"Total Supply: {totalSupplyResponse.totalSupply}");
 
-
-//9. TransferFrom
-var transferFromRequest = new TransferFromRequest
-{
-    contractAddress = "0x5FbE0944D3d2df2C7D2B55c0ED2C9085bcD8971A",
-    sender = "0x7590a8ff8a4b8e2831db16a02f03c7acd65aca26",
-    recipient = "0x5770bf37D6617eec99744DD6Ee03a3DA12b681eE",
-    amount = 100,
-    network = 80001
-};
-
-var transferFromResponse = await client.TransferFromAsync(transferFromRequest, CancellationToken.None);
-Console.WriteLine($"TransferFrom TxnHash: {transferFromResponse.txHash}");
-
-//10. IncreaseAllowance
-var increaseAllowanceRequest = new IncreaseAllowanceRequest
-{
-    contractAddress = "0x5FbE0944D3d2df2C7D2B55c0ED2C9085bcD8971A",
-    spender = "0x5770bf37D6617eec99744DD6Ee03a3DA12b681eE",
-    addedValue = 100,
-    network = 80001
-};
-
-var increaseAllowanceResponse = await client.IncreaseAllowanceAsync(increaseAllowanceRequest, CancellationToken.None);
-Console.WriteLine($"IncreaseAllowance TxnHash: {increaseAllowanceResponse.txHash}");
-
-
-//11. DecreaseAllowance
-
-var decreaseAllowanceRequest = new DecreaseAllowanceRequest
-{
-    contractAddress = "0x5FbE0944D3d2df2C7D2B55c0ED2C9085bcD8971A",
-    spender = "0x5770bf37D6617eec99744DD6Ee03a3DA12b681eE",
-    substractedValue = 100,
-    network = 80001
-};
-
-var decreaseAllowanceResponse = await client.DecreaseAllowanceAsync(decreaseAllowanceRequest, CancellationToken.None);
-Console.WriteLine($"DecreaseAllowance TxnHash: {decreaseAllowanceResponse.txHash}");
 
 

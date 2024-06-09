@@ -17,9 +17,10 @@
     <RepositoryType>git</RepositoryType>
     <PackageTags>vottun; api; erc20</PackageTags>
     <IsPackable>true</IsPackable>
-    <Version>1.0.5</Version>
+    <Version>1.1.0</Version>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <PackageReleaseNotes>Changed initialSupply type from string to int and other minor changes.</PackageReleaseNotes>
+    <PackageReleaseNotes>Changed uint256 solidity types to equivalent System.Numeric.BigInteger type.
+Some typo corrections.</PackageReleaseNotes>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <OutputType>Library</OutputType>
   </PropertyGroup>

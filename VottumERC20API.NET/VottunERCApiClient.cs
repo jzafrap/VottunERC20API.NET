@@ -1,12 +1,19 @@
-﻿using System.Net.Mime;
-using System.Text;
+﻿using System.Text;
 using System.Text.Json;
-using System.Text.Json.Serialization;
+using VottunERC20API.NET.json;
 
-namespace VottumERC20API.NET
+namespace VottunERC20API.NET
 {
-    public class VottunERCApiClient:IVottumERCApiClient
+    public class VottunERCApiClient:IVottunERCApiClient
     {
+        private JsonSerializerOptions GetJsonSerializerOptions()
+        {
+            var options = new JsonSerializerOptions();
+            options.Converters.Add(new BigIntegerConverter());
+            options.TypeInfoResolver = new AppJsonSerializerContext();
+            return options;
+        }
+
         private readonly HttpClient _httpClient;
         public VottunERCApiClient(HttpClient httpClient)
         {
@@ -15,8 +22,7 @@ namespace VottumERC20API.NET
         #region Deploy
         public async Task<DeployResponse> DeployAsync(DeployRequest request, CancellationToken cancellationToken)
         {
-            var options = new JsonSerializerOptions();
-            options.TypeInfoResolver = new AppJsonSerializerContext();
+            var options = GetJsonSerializerOptions();
             var response = await _httpClient.PostAsJsonAsync(ApiUrlConstants.Deploy, request, options,cancellationToken);
             response.EnsureSuccessStatusCode();
             return await response.Content.ReadFromJsonAsync<DeployResponse>(options,cancellationToken: cancellationToken);
@@ -26,8 +32,7 @@ namespace VottumERC20API.NET
         #region transfer
         public async Task<TransferResponse> TransferAsync(TransferRequest request, CancellationToken cancellationToken)
         {
-            var options = new JsonSerializerOptions();
-            options.TypeInfoResolver = new AppJsonSerializerContext();
+            var options = GetJsonSerializerOptions();
             var response = await _httpClient.PostAsJsonAsync(ApiUrlConstants.Transfer, request, options,cancellationToken);
             response.EnsureSuccessStatusCode();
             return await response.Content.ReadFromJsonAsync<TransferResponse>(options,cancellationToken: cancellationToken);
@@ -37,8 +42,7 @@ namespace VottumERC20API.NET
         #region TransferFrom
         public async Task<TransferFromResponse> TransferFromAsync(TransferFromRequest request, CancellationToken cancellationToken)
         {
-            var options = new JsonSerializerOptions();
-            options.TypeInfoResolver = new AppJsonSerializerContext();
+            var options = GetJsonSerializerOptions();
             var response = await _httpClient.PostAsJsonAsync(ApiUrlConstants.TransferFrom, request, options,cancellationToken);
             response.EnsureSuccessStatusCode();
             return await response.Content.ReadFromJsonAsync<TransferFromResponse>(options,cancellationToken: cancellationToken);
@@ -49,8 +53,7 @@ namespace VottumERC20API.NET
         #region IncreaseAllowance
         public async Task<IncreaseAllowanceResponse> IncreaseAllowanceAsync(IncreaseAllowanceRequest request, CancellationToken cancellationToken)
         {
-            var options = new JsonSerializerOptions();
-            options.TypeInfoResolver = new AppJsonSerializerContext();
+            var options = GetJsonSerializerOptions();
             var response = await _httpClient.PostAsJsonAsync(ApiUrlConstants.IncreaseAllowance, request, options,cancellationToken);
             response.EnsureSuccessStatusCode();
             return await response.Content.ReadFromJsonAsync<IncreaseAllowanceResponse>(options,cancellationToken: cancellationToken);
@@ -60,8 +63,7 @@ namespace VottumERC20API.NET
         #region DecreaseAllowance
         public async Task<DecreaseAllowanceResponse> DecreaseAllowanceAsync(DecreaseAllowanceRequest request, CancellationToken cancellationToken)
         {
-            var options = new JsonSerializerOptions();
-            options.TypeInfoResolver = new AppJsonSerializerContext();
+            var options = GetJsonSerializerOptions();
             var response = await _httpClient.PostAsJsonAsync(ApiUrlConstants.DecreaseAllowance, request, options, cancellationToken);
             response.EnsureSuccessStatusCode();
             return await response.Content.ReadFromJsonAsync<DecreaseAllowanceResponse>(options,cancellationToken: cancellationToken);
@@ -71,8 +73,7 @@ namespace VottumERC20API.NET
         #region Allowance
         public async Task<AllowanceResponse> AllowanceAsync(AllowanceRequest request, CancellationToken cancellationToken)
         {
-            var options = new JsonSerializerOptions();
-            options.TypeInfoResolver = new AppJsonSerializerContext();
+            var options = GetJsonSerializerOptions();
 
             var json = JsonSerializer.Serialize<AllowanceRequest>(request,options);
             var req = new HttpRequestMessage
@@ -90,8 +91,7 @@ namespace VottumERC20API.NET
         #region Name
         public async Task<NameResponse> NameAsync(NameRequest request, CancellationToken cancellationToken)
         {
-            var options = new JsonSerializerOptions();
-            options.TypeInfoResolver = new AppJsonSerializerContext();
+            var options = GetJsonSerializerOptions();
 
             var json = JsonSerializer.Serialize<NameRequest>(request, options);
             var req = new HttpRequestMessage
@@ -109,8 +109,7 @@ namespace VottumERC20API.NET
         #region Symbol
         public async Task<SymbolResponse> SymbolAsync(SymbolRequest request, CancellationToken cancellationToken)
         {
-            var options = new JsonSerializerOptions();
-            options.TypeInfoResolver = new AppJsonSerializerContext();
+            var options = GetJsonSerializerOptions();
             var json = JsonSerializer.Serialize<SymbolRequest>(request, options);
             var req = new HttpRequestMessage
             {
@@ -126,8 +125,7 @@ namespace VottumERC20API.NET
         #region TotalSupply
         public async Task<TotalSupplyResponse> TotalSupplyAsync(TotalSupplyRequest request, CancellationToken cancellationToken)
         {
-            var options = new JsonSerializerOptions();
-            options.TypeInfoResolver = new AppJsonSerializerContext();
+            var options = GetJsonSerializerOptions();
 
             var json = JsonSerializer.Serialize<TotalSupplyRequest>(request, options);
             var req = new HttpRequestMessage
@@ -145,8 +143,7 @@ namespace VottumERC20API.NET
         public async Task<DecimalsResponse> DecimalsAsync(DecimalsRequest request, CancellationToken cancellationToken)
         {
 
-            var options = new JsonSerializerOptions();
-            options.TypeInfoResolver = new AppJsonSerializerContext();
+            var options = GetJsonSerializerOptions();
             var json = JsonSerializer.Serialize<DecimalsRequest>(request, options);
             var req = new HttpRequestMessage
             {
@@ -163,8 +160,7 @@ namespace VottumERC20API.NET
         public async Task<BalanceOfResponse> BalanceOfAsync(BalanceOfRequest request, CancellationToken cancellationToken)
         {
 
-            var options = new JsonSerializerOptions();
-            options.TypeInfoResolver = new AppJsonSerializerContext();
+            var options = GetJsonSerializerOptions();
             var json = JsonSerializer.Serialize<BalanceOfRequest>(request, options);
             var req = new HttpRequestMessage
             {
@@ -178,30 +174,5 @@ namespace VottumERC20API.NET
         #endregion
     }
 
-    [JsonSerializable(typeof(DeployRequest))]
-    [JsonSerializable(typeof(DeployResponse))]
-    [JsonSerializable(typeof(TransferRequest))]
-    [JsonSerializable(typeof(TransferResponse))]
-    [JsonSerializable(typeof(TransferFromRequest))]
-    [JsonSerializable(typeof(TransferFromResponse))]
-    [JsonSerializable(typeof(IncreaseAllowanceRequest))]
-    [JsonSerializable(typeof(IncreaseAllowanceResponse))]
-    [JsonSerializable(typeof(DecreaseAllowanceRequest))]
-    [JsonSerializable(typeof(DecreaseAllowanceResponse))]
-    [JsonSerializable(typeof(AllowanceRequest))]
-    [JsonSerializable(typeof(AllowanceResponse))]
-    [JsonSerializable(typeof(NameRequest))]
-    [JsonSerializable(typeof(NameResponse))]
-    [JsonSerializable(typeof(SymbolRequest))]
-    [JsonSerializable(typeof(SymbolResponse))]
-    [JsonSerializable(typeof(TotalSupplyRequest))]
-    [JsonSerializable(typeof(TotalSupplyResponse))]
-    [JsonSerializable(typeof(DecimalsRequest))]
-    [JsonSerializable(typeof(DecimalsResponse))]
-    [JsonSerializable(typeof(BalanceOfRequest))]
-    [JsonSerializable(typeof(BalanceOfResponse))]
-    internal partial class AppJsonSerializerContext: JsonSerializerContext
-    {
-     
-    }
+  
 }

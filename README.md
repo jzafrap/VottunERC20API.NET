@@ -36,7 +36,7 @@ Using VottunERC20API.NET SDK is very easy:
 Example of use:
    
 ```csharp
-using VottumERC20API.NET;
+using VottunERC20API.NET;
 
 //set your api and authorization key
 var apiKey = "<your api key>";
@@ -186,6 +186,8 @@ Console.WriteLine($"DecreaseAllowance TxnHash: {decreaseAllowanceResponse.txHash
   - first version
 - 1.0.5:
   - changed ```initialSupply``` attribute from ```string``` to ```int``` type and other minor changes
+- 1.0.6:
+  - changed uint256 solidity type (initialSuply, value, allowance...) to System.Numeric.Biginteger NET.8 type as ERC20 supply and value are expressed in gwei (256bit integers)
  
 # TO DO list
 - Extend to other vottun APIS

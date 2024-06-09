@@ -8,7 +8,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="VottunERC20API.NET" Version="1.0.5" />
+    <ProjectReference Include="..\VottumERC20API.NET\VottunERC20API.NET.csproj" />
   </ItemGroup>
+
+ 
 
 </Project>

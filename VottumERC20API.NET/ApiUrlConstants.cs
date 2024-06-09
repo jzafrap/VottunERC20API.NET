@@ -1,4 +1,4 @@
-﻿namespace VottumERC20API.NET
+﻿namespace VottunERC20API.NET
 {
     public static class ApiUrlConstants
     {
